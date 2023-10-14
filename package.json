@@ -1,0 +1,24 @@
+{
+  "name": "simple-i18n",
+  "version": "0.1.0",
+  "description": "NPM Package for easy localization of your apps",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": "https://github.com/denkisil/simple-i18n",
+  "author": "denkisil",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src --ext .ts",
+    "start": "node ."
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.4",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "eslint": "^8.51.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  }
+}
