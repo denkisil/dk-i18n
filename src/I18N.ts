@@ -1,6 +1,6 @@
 import * as path from "path";
 import * as fs from "fs";
-import Locale from "./Locale";
+import Locale, { TranslationValues } from "./Locale";
 
 export interface I18NOptions {
   initLocale?: string;
@@ -23,11 +23,7 @@ export default class I18N {
   }
 
   addLocale(newLocale: string) {
-    const localePath = path.join(
-      process.cwd(),
-      this.options.localePath!,
-      `${newLocale}.json`
-    );
+    const localePath = path.join(this.options.localePath!, `${newLocale}.json`);
 
     if (Object.keys(this.locales).includes(newLocale)) {
       return;
@@ -42,7 +38,7 @@ export default class I18N {
     this.locales.set(newLocale, new Locale(JSON.parse(localeData)));
   }
 
-  t(key: string, values?: { [key: number | string]: string }): string {
+  t(key: string, values?: TranslationValues): string | undefined {
     return this.locales.get(this.currentLocale)!.t(key, values || {});
   }
 }
