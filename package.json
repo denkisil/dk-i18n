@@ -1,10 +1,10 @@
 {
   "name": "dk-i18n",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "NPM Package for easy localization of your apps",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "repository": "https://github.com/denkisil/simple-i18n",
+  "repository": "https://github.com/denkisil/dk-i18n",
   "author": "denkisil",
   "license": "MIT",
   "scripts": {
