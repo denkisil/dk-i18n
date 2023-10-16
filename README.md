@@ -1,11 +1,11 @@
-# Simple I18N
+# DK I18N
 
 This NPM package created for simple and flexible localization of your applications.
 
 # Installation 
 
 ```bash
-npm install simple-i18n # you can use yarn or pnpm instead
+npm install dk-i18n # you can use yarn or pnpm instead
 ```
 
 # Usage
