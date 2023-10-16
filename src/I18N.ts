@@ -1,11 +1,14 @@
 import * as path from "path";
 import * as fs from "fs";
-import Locale, { TranslationValues } from "./Locale";
+import Locale, {
+  ILocale,
+  TranslationOptions,
+  TranslationValues
+} from "./Locale";
 
 export interface I18NOptions {
   initLocale?: string;
-  fallbackLocale: string;
-  localePath: string;
+  fallbackLocale?: string;
 }
 
 export default class I18N {
@@ -15,30 +18,37 @@ export default class I18N {
 
   useLocale(locale: string) {
     if (!this.locales.has(locale)) {
-      console.log("ERROR! Locale not found. Using fallback locale");
-      this.currentLocale = this.options.fallbackLocale;
+      if (!this.locales.has(this.options.fallbackLocale!)) {
+        throw new Error("ERROR! Fallback locale not found");
+      }
+
+      this.currentLocale = this.options.fallbackLocale!;
     } else {
       this.currentLocale = locale;
     }
   }
 
-  addLocale(newLocale: string) {
-    const localePath = path.join(this.options.localePath!, `${newLocale}.json`);
+  addLocale(name: string, locale: ILocale) {
+    if (this.locales.has(name)) return;
 
-    if (Object.keys(this.locales).includes(newLocale)) {
-      return;
-    }
-
-    if (!fs.existsSync(localePath)) {
-      throw new Error(`Locale file ${localePath} not found`);
-    }
-
-    const localeData = fs.readFileSync(localePath, "utf8");
-
-    this.locales.set(newLocale, new Locale(JSON.parse(localeData)));
+    this.locales.set(name, new Locale(locale));
   }
 
-  t(key: string, values?: TranslationValues): string | undefined {
-    return this.locales.get(this.currentLocale)!.t(key, values || {});
+  t(
+    key: string,
+    options?: TranslationOptions,
+    values?: TranslationValues
+  ): string | string[] | ILocale | undefined {
+    if (!this.locales.has(this.currentLocale)) {
+      console.log(
+        "ERROR! Initial or set locale not found. Trying to use fallback locale"
+      );
+
+      this.useLocale(this.options.fallbackLocale!);
+    }
+
+    return this.locales
+      .get(this.currentLocale)!
+      .t(key, options || {}, values || {});
   }
 }
