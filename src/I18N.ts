@@ -36,7 +36,7 @@ export default class I18N {
     key: string,
     options?: TranslationOptions,
     values?: TranslationValues
-  ): string | string[] | ILocale | undefined {
+  ): string | string[] | ILocale | ILocale[] | undefined {
     if (!this.locales.has(this.currentLocale)) {
       console.log(
         "ERROR! Initial or set locale not found. Trying to use fallback locale"

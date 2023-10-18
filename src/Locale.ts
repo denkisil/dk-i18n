@@ -1,5 +1,5 @@
 export interface ILocale {
-  [key: string]: string | string[] | ILocale;
+  [key: string]: string | string[] | ILocale | ILocale[];
 }
 
 export interface TranslationValues {
@@ -17,7 +17,7 @@ export default class Locale {
     key: string,
     options?: TranslationOptions,
     values?: TranslationValues
-  ): string | string[] | ILocale | undefined {
+  ): string | string[] | ILocale | ILocale[] | undefined {
     const keys = key.split(".");
     let locale = this.locale;
 
