@@ -14,7 +14,7 @@ npm install dk-i18n # you can use yarn or pnpm instead
 import { I18N } from 'simple-i18n';
 
 const i18n = new I18N({
-  initLocale: "uk",
+  initLocale: "ua",
   fallbackLocale: "en"
 });
 
@@ -23,7 +23,7 @@ i18n.addLocale("en", {
   names: ["John", "Jane", "Joe"]
 });
 
-i18n.addLocale("uk", {
+i18n.addLocale("ua", {
   hello: "Привіт, {name}!",
   names: ["Іван", "Іванна", "Іванко"]
 });
